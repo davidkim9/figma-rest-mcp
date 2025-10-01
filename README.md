@@ -87,6 +87,10 @@ To use this server with Cursor/Claude Code/Claude Desktop, add it to your MCP se
 }
 ```
 
+To get your Figma Access Token:
+[https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens)
+
+
 > **Note:** After updating the configuration, restart Claude Code/Desktop for changes to take effect.
 >
 > **Important:** Ensure you have a valid Figma Access Token set in the environment variables.
