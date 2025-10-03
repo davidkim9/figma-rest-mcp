@@ -106,14 +106,37 @@ Start the HTTP server:
 FIGMA_ACCESS_TOKEN=your_token npm start
 # or with custom port
 FIGMA_ACCESS_TOKEN=your_token PORT=4202 npm start
+
+# With authentication
+FIGMA_ACCESS_TOKEN=your_token MCP_AUTH_TOKEN=your-secret-token npm start
 ```
 
 The server will listen on `http://localhost:4202/mcp` (or your custom port).
 
-**Example HTTP Request:**
+**Authentication (Optional):**
+
+You can secure the HTTP server with token-based authentication by setting the `MCP_AUTH_TOKEN` environment variable. If set, all requests must include the token in the `Authorization` header.
+
+**Example HTTP Request (without authentication):**
 ```bash
 curl -X POST http://localhost:4202/mcp \
   -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "list_files",
+      "arguments": {}
+    }
+  }'
+```
+
+**Example HTTP Request (with authentication):**
+```bash
+curl -X POST http://localhost:4202/mcp \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-secret-token" \
   -d '{
     "jsonrpc": "2.0",
     "id": 1,
