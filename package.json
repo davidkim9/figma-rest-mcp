@@ -1,6 +1,6 @@
 {
   "name": "figma-rest-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server with Figma REST API automation capabilities",
   "main": "dist/http-server.js",
   "type": "module",
