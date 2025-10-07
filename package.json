@@ -4,6 +4,9 @@
   "description": "MCP server with Figma REST API automation capabilities",
   "main": "dist/http-server.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "bin": {
     "figma-rest-mcp": "dist/stdio-server.js"
   },
