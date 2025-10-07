@@ -1,8 +1,10 @@
-# Figma REST API MCP Server
+# Figma REST MCP Server
 
 ![Let it run code](image.png)
 
 A Model Context Protocol (MCP) server that provides Figma REST API automation capabilities. This server enables AI assistants like Claude/Cursor/ChatGPT to manage and interact with Figma files, retrieve design data, and export assets.
+
+This package minimizes the amount of tools to help AI Agents pick the right tool for a given prompt.
 
 ## Features
 
@@ -15,7 +17,7 @@ For detailed information about available tools, see [tools.md](tools.md).
 
 ## Table of Contents
 
-- [Figma REST API MCP Server](#figma-rest-api-mcp-server)
+- [Figma REST MCP Server](#figma-rest-mcp-server)
   - [Features](#features)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
