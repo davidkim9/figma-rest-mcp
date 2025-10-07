@@ -20,10 +20,10 @@ For detailed information about available tools, see [tools.md](tools.md).
 - [Figma REST MCP Server](#figma-rest-mcp-server)
   - [Features](#features)
   - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
+  - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
-    - [Quick Start](#quick-start)
   - [Configuration](#configuration)
+    - [Environment Variables](#environment-variables)
     - [Cursor / Claude Code / Claude Desktop Configuration](#cursor--claude-code--claude-desktop-configuration)
     - [HTTP Transport (for n8n or other HTTP clients)](#http-transport-for-n8n-or-other-http-clients)
   - [Development](#development)
@@ -35,38 +35,25 @@ For detailed information about available tools, see [tools.md](tools.md).
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
 
-## Installation
+## Getting Started
 
 ### Prerequisites
 - Node.js 18 or higher
 - Figma Access Token (Personal or OAuth)
 - npm or yarn
 
-### Quick Start
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd figma-rest-mcp
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-   This will install dependencies and build the project.
-
-3. **Run the server (http only)**
-
-   For HTTP transport (n8n):
-   ```bash
-   FIGMA_ACCESS_TOKEN=your_token npm start
-   ```
-
-   For configuration based clients: [MCP Configuration](#configuration)
-
 ## Configuration
+
+### Environment Variables
+
+Configure the server behavior using environment variables:
+
+| Variable | Description | Default | Options |
+|----------|-------------|---------|---------|
+| `FIGMA_ACCESS_TOKEN` | Figma API access token (required) | None | Any valid token |
+| `FIGMA_BASE_URL` | Figma API base URL | `https://api.figma.com` | Any valid URL |
+| `PORT` | HTTP server port | `4202` | Any valid port number |
+| `MCP_AUTH_TOKEN` | Authentication token for HTTP server (optional) | None | Any string |
 
 ### Cursor / Claude Code / Claude Desktop Configuration
 
@@ -77,12 +64,12 @@ To use this server with Cursor/Claude Code/Claude Desktop, add it to your MCP se
 {
   "mcpServers": {
     "figma-rest": {
-      "command": "/Users/yourname/.nvm/versions/node/v24.4.1/bin/node",
+      "command": "npx",
       "args": [
-        "/Users/yourname/projects/figma-rest-mcp/dist/stdio-server.js"
+        "figma-rest-mcp"
       ],
       "env": {
-        "FIGMA_ACCESS_TOKEN": "your_figma_token_here"
+        "FIGMA_ACCESS_TOKEN": "figd_xxxxxx_your_figma_token_here"
       }
     }
   }
@@ -105,11 +92,12 @@ To get your Figma Access Token:
 
 Start the HTTP server:
 ```bash
+npm install
 FIGMA_ACCESS_TOKEN=your_token npm start
 # or with custom port
 FIGMA_ACCESS_TOKEN=your_token PORT=4202 npm start
 
-# With authentication
+# With authentication (recommended)
 FIGMA_ACCESS_TOKEN=your_token MCP_AUTH_TOKEN=your-secret-token npm start
 ```
 
@@ -118,21 +106,6 @@ The server will listen on `http://localhost:4202/mcp` (or your custom port).
 **Authentication (Optional):**
 
 You can secure the HTTP server with token-based authentication by setting the `MCP_AUTH_TOKEN` environment variable. If set, all requests must include the token in the `Authorization` header.
-
-**Example HTTP Request (without authentication):**
-```bash
-curl -X POST http://localhost:4202/mcp \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tools/call",
-    "params": {
-      "name": "list_files",
-      "arguments": {}
-    }
-  }'
-```
 
 **Example HTTP Request (with authentication):**
 ```bash
@@ -155,6 +128,9 @@ curl -X POST http://localhost:4202/mcp \
 ### Development Scripts
 
 ```bash
+# Install dependencies
+npm install
+
 # Start HTTP server with auto-reload
 npm run dev
 
