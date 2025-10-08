@@ -38,6 +38,14 @@
     "figma",
     "figma-api"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidkim9/figma-rest-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidkim9/figma-rest-mcp/issues"
+  },
+  "homepage": "https://github.com/davidkim9/figma-rest-mcp#readme",
   "author": "DK",
   "license": "MIT"
 }
